@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
+  --mainBg:#f7f8f9;
   --background: #ffffff;
   --foreground: #171717;
+
+  --bodyBg:#f7f8f9;
+  --sideWidth:240px;
 }
 
 @theme inline {
@@ -23,4 +27,52 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+header {
+  position:sticky;
+  top:0; background:var(--bodyBg);
+  /*margin-left:var(--sideWidth);*/
+  z-index:99;
+}
+header.mainHeader {
+  background:var(--bodyBg);
+}
+
+footer {
+  height: 80px;
+  position:sticky;
+  bottom:0; background:var(--bodyBg);
+  /*margin-left:var(--sideWidth);*/
+  z-index:99;
+}
+main {
+  height: 100%;
+}
+.headerWrap {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* 선택 사항 */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+
+.header .left {
+
+}
+.header .center {
+
+}
+.header .right {
+
+}
+.footerWrap {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px; /* 선택 사항 */
+  font-size: 14px;
 }

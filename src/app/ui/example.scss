@@ -1,0 +1,187 @@
+.wrap {
+
+}
+/* basic button style */
+.btn {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #e74c3c;
+    border-radius: 0.6em;
+    color: #e74c3c;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1rem;
+    /*font-weight: 400;*/
+    line-height: 1;
+    margin: 10px;
+    //padding: 1.2em 2.8em;
+    padding: 0.5em 1.5em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+
+    &:hover,
+    &:focus {
+        //color: #fff;
+        color: #000;
+        outline: 0;
+    }
+}
+.btn1 {
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    &:hover {
+        box-shadow: 0 0 40px 40px #e74c3c inset;
+    }
+}
+.btn3 {
+    border-color: #3498db;
+    color: #fff;
+    box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+    transition: all 150ms ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+    }
+}
+
+/* list */
+.tabGrp {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tabGrp li {
+    flex: 1; /* 모든 li가 동일한 너비로 나열됨 */
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.tab {
+    cursor: pointer;
+}
+.tabActive {
+    background-color: #ededed;
+    cursor: pointer;
+}
+
+/* tictactoe */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+h4 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+h5 {
+    margin-top: 0;
+    font-size: 14px;
+}
+
+h6 {
+    margin-top: 0;
+    font-size: 12px;
+}
+
+code {
+    font-size: 1.2em;
+}
+
+ul {
+    padding-inline-start: 20px;
+}
+
+.square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 34px;
+}
+
+.board-row:after {
+    clear: both;
+    content: '';
+    display: table;
+}
+
+.status {
+    margin-bottom: 10px;
+}
+.game {
+    display: flex;
+    flex-direction: row;
+}
+
+.game-info {
+    margin-left: 20px;
+}
+/*.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.status {
+    margin-bottom: 10px;
+}
+.board-row {
+    margin: auto;
+}
+
+.square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+}
+.game-info {
+    margin-left: 20px;
+}*/
+/*
+.game-info ol li {
+    margin-bottom: 10px;
+}*/
+
+/*
+https://inpa.tistory.com/entry/CSS-%F0%9F%92%8D-%EB%B2%84%ED%8A%BC-%EB%94%94%EC%9E%90%EC%9D%B8-%EB%AA%A8%EC%9D%8C
+*/
