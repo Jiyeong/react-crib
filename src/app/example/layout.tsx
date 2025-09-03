@@ -12,9 +12,9 @@ export default function ExLayout({ children }: { children: ReactNode }) {
           <div>
             {children}
           </div>
-          <Footer />
         </div>
       </main>
+      <Footer />
     </>
   );
 }
