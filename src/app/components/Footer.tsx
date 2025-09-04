@@ -6,7 +6,7 @@ export default function Footer () {
         <div className="footerWrap">
           <div className="left"></div>
           <div className="center">
-            Copyright @Joel Kim, 2025. All rights reserved.
+            Copyright 2025 Joel Kim. All rights reserved.
           </div>
           <div className="right">
             <a
