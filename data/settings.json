@@ -1,0 +1,16 @@
+{
+  "widgets": [
+    {
+      "id": "weather",
+      "size": "medium"
+    },
+    {
+      "id": "exchange",
+      "size": "small"
+    },
+    {
+      "id": "it-news",
+      "size": "medium"
+    }
+  ]
+}

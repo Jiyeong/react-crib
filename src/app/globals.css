@@ -1,32 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --mainBg:#f7f8f9;
-  --background: #ffffff;
+  /* MineMine 테마 토큰 (iOS 위젯 스타일) */
+  --mainBg:#f2f2f7;
+  --background: #f2f2f7;
   --foreground: #171717;
+  --card: #ffffff;
+  --line: rgba(0, 0, 0, 0.08);
+  --muted: #6b7280;
+  --accent: #0a7cff;
+  --up: #e5484d;   /* 상승 */
+  --down: #2f6fed; /* 하락 */
 
-  --bodyBg:#f7f8f9;
+  --bodyBg:#f2f2f7;
   --sideWidth:240px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-up: var(--up);
+  --color-down: var(--down);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --mainBg: #000000;
+    --background: #000000;
     --foreground: #ededed;
+    --card: #1c1c1e;
+    --line: rgba(255, 255, 255, 0.1);
+    --muted: #9a9aa1;
+    --accent: #3a95ff;
+    --up: #ff6369;
+    --down: #5b8def;
+    --bodyBg: #000000;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
 }
 header {
   position:sticky;

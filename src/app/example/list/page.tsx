@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense  } from 'react'
 import createClient from 'openapi-fetch'
 
 const testData = [
@@ -17,7 +17,7 @@ const listData = testData.map(item =>
 
 export default function List() {
   // https://pokeapi.co/
-  const [pokemonData, setPokemonData] = useState([])
+  const [pokemonData, setPokemonData] = useState<{ name: string }[]>([])
   const [pokemonData2, setPokemonData2] = useState([])
   const [tab, setTab] = useState(1)
 
@@ -26,11 +26,13 @@ export default function List() {
       const client = createClient({
         baseUrl: 'https://pokeapi.co/api/v2/',
       })
+      // @ts-ignore
       const data = await client.GET("/pokemon")
       // const data = await client.GET("/ability")
       // const data = await client.GET("/pokemon/ditto")
       // const data = await client.GET("/pokemon")
       if (data.response.status === 200) {
+        // @ts-ignore
         setPokemonData(data.data?.results)
       } else {
         throw new Error('error')
@@ -38,18 +40,24 @@ export default function List() {
 
       const allPokemonData = []
       for(let i=1;i<=151;i++) {
+        // @ts-ignore
         const response = await client.GET(`/pokemon/${i}`)
+        // @ts-ignore
         const specResponse = await client.GET(`/pokemon-species/${i}`)
+        // @ts-ignore
         const koreanName = specResponse.data.names.find(name => name.language.name === 'ko')
+        // @ts-ignore
         allPokemonData.push({ ...response.data, korean_name: koreanName.name })
       }
+        // @ts-ignore
         setPokemonData2(allPokemonData)
 
     })()
   }, [])
 
   const renderPokemonList = () => {
-    return pokemonData2.map((pokemon) => (
+    // @ts-ignore
+    return pokemonData2.map((pokemon: any) => (
       <div key={pokemon.id}>
         <img src={pokemon.sprites.front_default} alt={pokemon.korean_name} />
         <p>{pokemon.korean_name}</p>
@@ -77,18 +85,22 @@ export default function List() {
       {tab === 2 &&
       <div>
         <ul>
-          {pokemonData.map(item => <li key={item.name}>{item.name}</li>)}
+          <Suspense fallback={<p>Loading pokemon...</p>}>
+            {pokemonData.map(item => <li key={item.name}>{item.name}</li>)}
+          </Suspense>
         </ul>
       </div>
       }
       {tab === 3 &&
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-        gap: '16px',
-      }}>
-        {renderPokemonList()}
-      </div>
+        <Suspense fallback={<p>Loading pokemon...</p>}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+            gap: '16px',
+          }}>
+            {renderPokemonList()}
+          </div>
+        </Suspense>
       }
     </>
   )

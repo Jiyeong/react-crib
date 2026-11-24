@@ -15,7 +15,9 @@ import {useState} from "react";
 * */
 
 // 3X3 개별 칸 component
-function Square ({ value, onSquareClick }) {
+type SquareValue = "X" | "O" | null
+
+function Square ({ value, onSquareClick }: { value: SquareValue; onSquareClick: () => void }) {
   return (
       <button className="square" onClick={onSquareClick}>
         {value}
@@ -23,7 +25,7 @@ function Square ({ value, onSquareClick }) {
   )
 }
 // 3x3 전체 게임 판, 실제 게임 로직
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay }: { xIsNext: boolean; squares: SquareValue[]; onPlay: (nextSquares: SquareValue[]) => void }) {
   // const [xIsNext, setXIsNext] = useState(true)
   // const [squares, setSquares] = useState(Array(9).fill(null)) // 원본
   // 표시
@@ -36,7 +38,7 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   // 칸 클릭 로직
-  function handleClick(i) {
+  function handleClick(i: number) {
     // 해당 영역에 클릭이 되어있는지 or 이긴 사람이 있는지
     if (squares[i] || calculateWinner(squares)) {
       return
@@ -71,21 +73,21 @@ function Board({ xIsNext, squares, onPlay }) {
 
 export default function Game() {
   // const [xIsNext, setXIsNext] = useState(true)
-  const [history, setHistory] = useState([Array(9).fill(null)]) // 원본
+  const [history, setHistory] = useState<SquareValue[][]>([Array(9).fill(null)]) // 원본
   const [currentMove, setCurrentMove] = useState(0)
   const xIsNext = currentMove % 2 === 0
   const currentSquares = history[currentMove] // 현재 선택한 동작 읽기
   // const currentSquares = history[history.length - 1] // 마지막 배열 읽기
 
   // 칸 클릭 액션으로 게임 진행시 히스토리 추가
-  function handlePlay(nextSquares) {
+  function handlePlay(nextSquares: SquareValue[]) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
     setHistory(nextHistory) // ... 은 history 의 모든 항목 열거.
     setCurrentMove(nextHistory.length - 1)
     // setXIsNext(!xIsNext)
   }
   // 히스토리 목록에서 선택한 시점으로 이동
-  function jumpTo(nextMove) {
+  function jumpTo(nextMove: number) {
     setCurrentMove(nextMove)
     // setXIsNext(nextMove % 2 === 0)
   }
@@ -116,7 +118,7 @@ export default function Game() {
   )
 }
 // 이긴 사람 있는지 확인
-function calculateWinner(squares){
+function calculateWinner(squares: SquareValue[]){
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

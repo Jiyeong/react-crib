@@ -4,10 +4,11 @@ import {useEffect, useState } from "react";
 export default function Header() {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
   useEffect(() => {
-    setInterval(() => {
+    const timer = setInterval(() => {
       setTime(new Date().toLocaleTimeString())
     }, 1000)
-  })
+    return () => clearInterval(timer)
+  }, [])
   return (
       <>
         <header id="header" className="mainHeader">
