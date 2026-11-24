@@ -23,7 +23,7 @@ export function WidgetCard({ size, title, icon, children, footer }: WidgetCardPr
       aria-label={title}
       className={`${SIZE_CLASS[size]} flex min-w-0 flex-col overflow-hidden rounded-[22px] border border-line bg-card p-4 shadow-sm`}
     >
-      <div className="flex items-center gap-1.5 text-xs font-semibold text-muted">
+      <div className="flex items-center gap-1.5 text-s font-semibold text-muted">
         <span aria-hidden>{icon}</span>
         <span className="truncate">{title}</span>
       </div>

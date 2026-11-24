@@ -19,8 +19,8 @@ export default async function Home() {
     <>
       <div className="mb-4 flex items-end justify-between">
         <div>
-          <p className="text-sm text-muted">{today}</p>
-          <h1 className="text-2xl font-bold">오늘의 MineMine</h1>
+          <p className="text-sm text-muted">오늘의 MineMine</p>
+          <h1 className="text-2xl font-bold">{today}</h1>
         </div>
         <Link
           href="/settings"
