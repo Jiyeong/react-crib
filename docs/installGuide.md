@@ -20,6 +20,23 @@ Would you like to customize the default import alias (@/*)?  No / Yes
 ```
 * app router / page router 
 
+```aiignore
+npm install yarn
+
+```
+
+## lib
+```aiignore
+npm install axios
+yarn add axios
+
+# https://www.npmjs.com/package/openai-fetch
+npm install openai-fetch
+
+```
+OpenAPI Typescript
+- https://github.com/openapi-ts/openapi-typescript
+- https://openapi-ts.dev/introduction
 
 ### 참고 문헌
 - https://velog.io/@director20844/Next.js-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0

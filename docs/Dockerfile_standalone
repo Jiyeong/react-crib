@@ -1,0 +1,4 @@
+# standalone 모드는 Docker가 아닌 Next.js 프로젝트 자체를 최적화 하는 기능이다
+
+# standalone 빌드 결과물만 복사!
+COPY --from=builder /app/.next/standalone ./
