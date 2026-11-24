@@ -8,7 +8,7 @@
 
 **MineMine** — 개인적으로 필요한 정보를 한눈에 모아보는 개인용 대시보드 서비스입니다. 외부 공공 API나 MCP로 데이터를 조회해 아이폰 위젯 같은 그리드로 보여주며, 사용자가 설정 화면에서 위젯을 골라 메인 화면을 커스텀합니다. (연습용 프로젝트 react-crib에서 전환됨)
 
-Next.js 15.4 + React 19 + TypeScript 기반 프로젝트이며 App Router를 사용합니다. standalone 출력(Docker 배포용)으로 설정되어 있고, 에이전트 기반 기능을 위해 Mastra AI 프레임워크와 연동되어 있습니다.
+Next.js 16.4 (Turbopack) + React 19 + TypeScript 기반 프로젝트이며 App Router를 사용합니다. standalone 출력(Docker 배포용)으로 설정되어 있고, 에이전트 기반 기능을 위해 Mastra AI 프레임워크와 연동되어 있습니다.
 
 ## MineMine 구조
 
@@ -42,7 +42,7 @@ Next.js 15.4 + React 19 + TypeScript 기반 프로젝트이며 App Router를 사
 
 ### 연습용 코드
 - `src/app/example/**`, `WeatherChat`, `QRCode` 등은 학습용으로 유지하며 MineMine 메뉴에는 노출하지 않는다
-- `eslint.config.mjs`에서 연습용 파일은 일부 규칙을 경고로 낮춰 빌드를 막지 않도록 했다
+- `eslint.config.mjs`(flat config, `eslint-config-next@16`)에서 연습용 파일은 일부 규칙을 경고로 낮췄다
 
 ## 개발 명령어
 
@@ -59,7 +59,7 @@ npm run build:prod          # 프로덕션 빌드 (NODE_ENV=production)
 npm start                   # 프로덕션 서버 실행
 
 # 린트
-npm run lint               # ESLint 실행
+npm run lint               # ESLint CLI 실행 (`eslint .`, Next 16에서 `next lint` 제거됨, 빌드 시 린트 미실행)
 ```
 
 ## 아키텍처
@@ -144,7 +144,8 @@ Next.js에서 다음 외부 도메인의 이미지를 허용하도록 설정되�
 
 ## 중요 사항
 
-- React 19와 Next.js 15.4를 사용하므로 이전 버전 대비 breaking change가 있을 수 있음
+- React 19와 Next.js 16.4를 사용한다. Next 16 API는 학습 데이터와 다를 수 있으므로 `node_modules/next/dist/docs/`를 참고한다
+- 의존성 설치·업그레이드 전 실행 중인 `next dev`를 종료한다 (Windows에서 SWC 네이티브 바이너리 `.node` 파일이 잠겨 교체되지 않으면 `bindings.lockfileTryAcquireSync is not a function` 같은 오류 발생)
 - 메인 브랜치는 `main`, 개발은 `develop` 브랜치에서 진행
 - 코드베이스 전반에 한글 주석/문서가 존재함
 - axios 인터셉터는 localStorage 사용이 가능하다고 가정함 (클라이언트 사이드 전용)
