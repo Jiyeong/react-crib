@@ -12,11 +12,18 @@ Next.js 16.4 (Turbopack) + React 19 + TypeScript 기반 프로젝트이며 App R
 
 ## MineMine 구조
 
-- **화면** (`src/app/(main)/` 라우트 그룹, 공통 레이아웃: `AppHeader` + `Footer`)
+- 기획서: `docs/wireframe/wf-1.md`(1차), `docs/wireframe/wf-2.md`(2차)
+- **화면** (`src/app/(main)/` 라우트 그룹, 공통 레이아웃: `AppHeader` + `Footer`, Footer는 sticky footer로 화면 최하단)
+  - 공통 헤더: 왼쪽 로고, 오른쪽 라이트/다크 토글(`ThemeToggle`) · 홈 · 설정 아이콘 버튼
   - `/` 메인: `data/settings.json`의 위젯을 순서대로 그리드에 표시 (모바일 2열 / 데스크톱 4열, 행 높이 170px)
-  - `/settings` 설정: 위젯 추가/제거, 크기(소/중/대) 선택, `@dnd-kit`으로 드래그 정렬, 하단에 버전 표시
+  - `/settings` 설정: 위젯 추가/제거, 크기(소/중/대) 선택, `@dnd-kit`으로 드래그 정렬, 하단에 데이터 출처 링크와 버전 표시
+  - `/settings/sources` 데이터 출처: `src/constants/sources.ts`의 API·MCP 출처 목록, ✕로 닫으면 `/settings`로 복귀
+- **테마** — `<html data-theme="light|dark">` 기준. `globals.css`의 `@custom-variant dark`로 Tailwind `dark:`도 이 속성을 따른다
+  - 초기값: `localStorage('minemine-theme')` → 없으면 OS 설정 (`src/app/layout.tsx`의 인라인 스크립트가 첫 페인트 전에 적용)
+  - 색상은 `globals.css`의 CSS 변수 토큰(`--card`, `--line` 등)만 사용하고, 다크 값은 `:root[data-theme="dark"]`에 정의
 - **위젯** (`src/widgets/`)
-  - `types.ts` — `WidgetId`, `WidgetSize`, 최소/최대 개수(`MIN_WIDGETS=2`, `MAX_WIDGETS=5`)
+  - 현재 위젯: 날씨, 환율, IT 뉴스, 경제 뉴스, 이번 달 달력(`calendar`, 소/대만 지원, 외부 API 없이 Asia/Seoul 기준 계산)
+  - `types.ts` — `WidgetId`, `WidgetSize`, 최소/최대 개수(`MIN_WIDGETS=2`, `MAX_WIDGETS=10`)
   - `meta.ts` — 위젯 이름·설명·카테고리·지원 크기 (클라이언트에서도 사용)
   - `components.tsx` — 위젯 id → 서버 컴포넌트 매핑, 위젯별 `Suspense` 스켈레톤
   - `WidgetCard.tsx` — 공통 카드/스켈레톤/에러 UI, 크기별 그리드 칸(`small`=1×1, `medium`=2×1, `large`=2×2)
@@ -35,10 +42,11 @@ Next.js 16.4 (Turbopack) + React 19 + TypeScript 기반 프로젝트이며 App R
 2. `src/widgets/meta.ts`에 메타 정보 등록
 3. `src/lib/data/`에 조회 함수 작성 (`fetch`에 `next: { revalidate }` 지정)
 4. `src/widgets/<이름>/<이름>Widget.tsx` 작성 후 `src/widgets/components.tsx`의 `RENDERERS`에 등록
+5. 외부 API·MCP를 새로 사용하면 `src/constants/sources.ts`의 출처 목록에 추가
 
 ### 버전 규칙
 - 서비스 버전의 단일 소스는 `package.json`의 `version`이며, 설정 화면 하단에 `MineMine v{version}`으로 자동 표시된다 (`src/constants/version.ts`)
-- v0.0.1 이후 기능 추가·변경 시 `package.json`의 `version`을 올린다 (기능 추가: 마이너/패치, 버그 수정: 패치)
+- **커밋마다 버전을 올리지 않는다.** 사용자가 "버전 업데이트해서 커밋해줘"처럼 커밋과 버전 업데이트를 함께 요청할 때만 `package.json`의 `version`을 올린다 (기능 추가: 마이너/패치, 버그 수정: 패치)
 
 ### 연습용 코드
 - `src/app/example/**`, `WeatherChat`, `QRCode` 등은 학습용으로 유지하며 MineMine 메뉴에는 노출하지 않는다

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { connection } from 'next/server';
 import { APP_NAME } from '@/constants/app';
 import { APP_VERSION } from '@/constants/version';
@@ -17,9 +18,14 @@ export default async function SettingsPage() {
 
       <SettingsEditor initialWidgets={widgets} />
 
-      <p className="mt-12 text-center text-xs text-muted">
-        {APP_NAME} v{APP_VERSION}
-      </p>
+      <div className="mt-12 flex flex-col items-center gap-1 text-xs text-muted">
+        <Link href="/settings/sources" className="underline underline-offset-2 hover:text-foreground">
+          이 서비스가 사용하는 데이터 출처
+        </Link>
+        <p>
+          {APP_NAME} v{APP_VERSION}
+        </p>
+      </div>
     </>
   );
 }

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { APP_NAME } from '@/constants/app';
+import ThemeToggle from '@/app/components/ThemeToggle';
 
 const NAV = [
   { href: '/', label: '홈', icon: '/icons/home.png' },
@@ -20,6 +21,9 @@ export default function AppHeader() {
         </Link>
         <nav aria-label="주요 메뉴">
           <ul className="flex gap-1">
+            <li>
+              <ThemeToggle />
+            </li>
             {NAV.map((item) => {
               const active = pathname === item.href;
               return (

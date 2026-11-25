@@ -7,7 +7,7 @@ export async function GET() {
   return NextResponse.json(await readSettings());
 }
 
-/** 대시보드 설정 저장 (위젯 2~5개, 중복 불가, 위젯별 지원 크기만 허용) */
+/** 대시보드 설정 저장 (위젯 2~10개, 중복 불가, 위젯별 지원 크기만 허용) */
 export async function PUT(req: Request) {
   let body: unknown;
   try {

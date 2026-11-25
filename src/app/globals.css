@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
+/* 다크 모드는 <html data-theme="dark"> 기준 (헤더 토글로 전환, 초기값은 저장값 → OS 설정 순) */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 :root {
+  color-scheme: light;
   /* MineMine 테마 토큰 (iOS 위젯 스타일) */
   --mainBg:#f2f2f7;
   --background: #f2f2f7;
@@ -29,19 +33,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --mainBg: #000000;
-    --background: #000000;
-    --foreground: #ededed;
-    --card: #1c1c1e;
-    --line: rgba(255, 255, 255, 0.1);
-    --muted: #9a9aa1;
-    --accent: #3a95ff;
-    --up: #ff6369;
-    --down: #5b8def;
-    --bodyBg: #000000;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --mainBg: #000000;
+  --background: #000000;
+  --foreground: #ededed;
+  --card: #1c1c1e;
+  --line: rgba(255, 255, 255, 0.1);
+  --muted: #9a9aa1;
+  --accent: #3a95ff;
+  --up: #ff6369;
+  --down: #5b8def;
+  --bodyBg: #000000;
 }
 
 body {

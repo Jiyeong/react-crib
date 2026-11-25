@@ -3,12 +3,12 @@
 export const WIDGET_SIZES = ['small', 'medium', 'large'] as const;
 export type WidgetSize = (typeof WIDGET_SIZES)[number];
 
-export const WIDGET_IDS = ['weather', 'exchange', 'it-news', 'economy-news'] as const;
+export const WIDGET_IDS = ['weather', 'exchange', 'it-news', 'economy-news', 'calendar'] as const;
 export type WidgetId = (typeof WIDGET_IDS)[number];
 
 /** 메인 화면에 표시할 위젯 최소/최대 개수 */
 export const MIN_WIDGETS = 2;
-export const MAX_WIDGETS = 5;
+export const MAX_WIDGETS = 10;
 
 /** 사용자가 선택한 위젯 하나의 설정 (배열 순서 = 화면 표시 순서) */
 export interface WidgetSetting {

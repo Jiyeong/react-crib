@@ -41,6 +41,16 @@ export const WIDGET_META: Record<WidgetId, WidgetMeta> = {
     defaultSize: 'medium',
     sizes: ['medium', 'large'],
   },
+  calendar: {
+    id: 'calendar',
+    name: '이번 달 달력',
+    description: '오늘 날짜를 강조한 이번 달 월간 달력을 보여줍니다.',
+    category: '생활',
+    icon: '📅',
+    defaultSize: 'large',
+    // 월간 달력(최대 6주)은 2×1 칸에 담기 어려워 medium은 지원하지 않는다
+    sizes: ['small', 'large'],
+  },
 };
 
 export const WIDGET_LIST: WidgetMeta[] = Object.values(WIDGET_META);

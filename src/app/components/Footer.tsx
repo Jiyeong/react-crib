@@ -10,7 +10,7 @@ export default function Footer () {
           </div>
           <div className="right">
             <a
-              href="https://github.com/Jiyeong"
+              href="https://github.com/Jiyeong/react-crib"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center hover:opacity-80 transition-opacity"
@@ -21,7 +21,7 @@ export default function Footer () {
                 alt="GitHub"
                 width={24}
                 height={24}
-                className="text-gray-600 hover:text-gray-900"
+                className="dark:invert"
               />
             </a>
 
